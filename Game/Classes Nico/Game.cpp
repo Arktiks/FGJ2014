@@ -7,7 +7,6 @@
 //Temp
 #include <iostream>
 
-Input input;
 Draw draw;
 
 Game::Game(void)
@@ -47,7 +46,7 @@ void Game::Main_loop()
         }
 		
 		player->Update();
-		draw.Update(main_window,player->pos);
+		draw.Update(main_window,player->pos,*player);
 	}
 
 	main_window.close();//Close main window

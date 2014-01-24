@@ -17,5 +17,6 @@ private:
 	void Close_window();//Close the main window
 
 	Player *player;
+
 };
 
