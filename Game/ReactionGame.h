@@ -1,4 +1,3 @@
-// FGJ14 on paras, ja pizza :---dDDDD
 #include <Windows.h>
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -9,4 +8,6 @@
 using namespace std;
 using namespace sf;
 
-void game();
+void ReactionGame();
+void Initialize();
+void CreateSprite(string name, string path);
