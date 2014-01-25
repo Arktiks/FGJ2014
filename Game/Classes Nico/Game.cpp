@@ -32,7 +32,7 @@ void Game::Close_window()//Close the main window
 
 void Game::Main_loop()
 {
-
+	
 	Greate_window();
 
 
@@ -44,9 +44,12 @@ void Game::Main_loop()
             if (event.type == sf::Event::Closed)
                 main_window.close();
         }
-		
-		player->Update();
+		if(player->Alive)
+		{
+			player->Update();
+		}
 		draw.Update(main_window,player->pos,*player);
+		
 	}
 
 	main_window.close();//Close main window

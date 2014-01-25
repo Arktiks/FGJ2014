@@ -18,5 +18,8 @@ public:
 	std::deque<bullet> Bullets;
 	sf::Clock clock;
 	sf::Time time;
+	sf::FloatRect collison_pox;
+	void erase_bullet(int i);
+	bool Alive;
 };
 

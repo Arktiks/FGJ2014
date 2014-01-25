@@ -5,8 +5,10 @@
 
 Player::Player(void)
 {
-	pos.x = 0, pos.y = 0;
-	
+	pos.x = 465, pos.y = 576 -173;
+	collison_pox.left = pos.x, collison_pox.top = pos.y;
+	collison_pox.height = 173, collison_pox.width = 98;
+	Alive = true;
 }
 
 
@@ -28,17 +30,19 @@ void Player::Update()
 	{
 		pos.x -= 0.2f;
 	}
-	if(Input::Hold_Key(sf::Keyboard::S) && pos.y+1 < 576 - 150)
+	if(Input::Hold_Key(sf::Keyboard::S) && pos.y+1 < 576 - 128)
 	{
 		pos.y += 0.2f;
 	}
-	if(Input::Hold_Key(sf::Keyboard::W) && pos.y-1 > -20)
+	if(Input::Hold_Key(sf::Keyboard::W) && pos.y-1 > 0)
 	{
 		pos.y -= 0.2f;
 	}
-	
+	collison_pox.left = pos.x;
+	collison_pox.top = pos.y;
+
 	//Shooting
-	if(Input::Hold_Key(sf::Keyboard::Space) && clock.getElapsedTime() > sf::milliseconds(75))
+	if(Input::Hold_Key(sf::Keyboard::Space) && clock.getElapsedTime() > sf::milliseconds(100))
 	{
 		Bullets.push_back(bullet(pos));
 		clock.restart();
@@ -48,13 +52,22 @@ void Player::Update()
 	{
 		for(int i = 0; i < Bullets.size(); i++)
 		{
-			Bullets[i].Update();
-			if(Bullets[i].pos.y < -50)
+			if(Bullets[i].hit == false)
+			{
+				Bullets[i].Update();
+			}
+			if(Bullets[i].pos.y < -50 || Bullets[i].hit == true)
 			{
 				Bullets.erase(Bullets.begin() +i);
 				std::cout<<"out of bounds \n";
+				i--;
 			}
 		}
 	}
 	
+}
+
+void Player::erase_bullet(int i)
+{
+	Bullets[i].setHit();
 }
