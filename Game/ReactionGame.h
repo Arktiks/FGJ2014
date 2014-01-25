@@ -22,4 +22,7 @@ using namespace sf;
 void ReactionGame();
 void Initialize();
 void CreateSprite(string name, string path);
-bool MouseClick(Sprite sprite);
+bool MouseClickArea(Sprite sprite, Event &event, RenderWindow &window);
+
+//bool CheckForMouseTrigger(Sprite &sprite, RenderWindow &window);
+//bool MouseClick(Sprite sprite);
