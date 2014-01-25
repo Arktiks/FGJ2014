@@ -80,10 +80,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes Nico\Bullet.cpp" />
+    <ClCompile Include="Classes Nico\Draw.cpp" />
+    <ClCompile Include="Classes Nico\Game.cpp" />
+    <ClCompile Include="Classes Nico\Input.cpp" />
+    <ClCompile Include="Classes Nico\map.cpp" />
+    <ClCompile Include="Classes Nico\Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ReactionGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Classes Nico\Bullet.h" />
+    <ClInclude Include="Classes Nico\Draw.h" />
+    <ClInclude Include="Classes Nico\Game.h" />
+    <ClInclude Include="Classes Nico\Input.h" />
+    <ClInclude Include="Classes Nico\map.h" />
+    <ClInclude Include="Classes Nico\Player.h" />
     <ClInclude Include="ReactionGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

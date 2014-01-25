@@ -3,30 +3,34 @@ RenderWindow ReactionWindow; // Window that serves as a target for OpenGL render
 Event ReactionEvent;
 
 map<string, Sprite> SpriteLib; // Spritet
+map<string, Text> TextLib; // Tekstit
 vector<Texture> TextureLib(10); // Tekstuurit
 default_random_engine generator((unsigned int)time(0)); // Random generattoori <random>
 
 int textureIndex=0; // K‰ytet‰‰n CreateSpritess‰
-Clock kello;
 float boxW=32, boxH=32; // Reactionbox Mitat
+Font Impact; // Perusfontti
+Clock kello, noiseKello;
 
 uniform_real_distribution<float> width(boxW, 1024); // Leveys randomisaatio
 uniform_real_distribution<float> height(boxH, 576); // Korkeus randomisaatio
 uniform_real_distribution<float> color(1, 255); // Random v‰ri
+uniform_real_distribution<int> tuhat(1, 1000);
 
 
 void ReactionGame()
 {
 	ReactionWindow.create(VideoMode(1024, 576), "01100010011010010111010000100000011000010110010001110110011001010110111001110100011101010111001001100101", Style::Titlebar);
+	Impact.loadFromFile("Resources/impact.ttf");
 	Initialize();
-	Font font; font.loadFromFile("Resources/impact.ttf");
-	SpriteLib["testi"].setPosition(200.0f,200.0f);
-	int PisteLaskuri=0;
+	int pisteLaskuri=2, noise=0;
+	string Pisteet;
 
-	//Vector2f mousePosition = Vector2f(Mouse.getPosition(ReactionWindow).x,Mouse.getPosition(ReactionWindow).y);
-	//float mouseX=0, mouseY=0;
-	//Vector2<float> mousePosition(mouseX, mouseY);
-
+	SpriteLib["testi"].setPosition(200.0f, 200.0f);
+	SpriteLib["scoreBG"].setPosition(2.0f, 2.0f);
+	TextLib["pisteet"].setPosition(23, 7.5f);
+	TextLib["pisteet"].setColor(Color::Black);
+	SpriteLib["ghost"].setColor(Color::Color(255,255,255,150));
 
 	while (ReactionWindow.isOpen()) 
 	{
@@ -39,28 +43,59 @@ void ReactionGame()
 				   ReactionWindow.close();
 
 			   if(MouseClickArea(SpriteLib["testi"], ReactionEvent, ReactionWindow))
-				   PisteLaskuri++;
-
-			   /*else if(ReactionEvent.type == Event::MouseButtonPressed && ReactionEvent.mouseButton.button == Mouse::Left)
-			   {
-				   cout<<" TOIMITT";
-				   if(SpriteLib["testi"].getGlobalBounds().contains(mousePosition))
-				   cout<<"VEKTORIIIII";*/
+				   {
+					   SpriteLib["testi"].setPosition(width(generator)-boxW,height(generator)-boxH);
+					   pisteLaskuri++;
+				   }
 			 }
 
+	   Pisteet = ConvertInt(pisteLaskuri);
+	   (TextLib["pisteet"]).setString(Pisteet);
+	   Color randomColor(color(generator), color(generator), color(generator),255); // Random v‰ri generaattori
+	   Color randomOpacity(color(generator), color(generator), color(generator), color(generator)); // V‰ri + Opacity
 
-	   //ReactionWindow.clear(Color(color(generator),color(generator),color(generator),255)); // Epilepsia v‰ri
-	   ReactionWindow.clear(Color::Black); // Musta
+	   if (pisteLaskuri==0)
+			ReactionWindow.clear(Color::Black); // Musta
+	   else if (pisteLaskuri==1)
+		    ReactionWindow.clear(randomColor); // Epilepsia v‰ri
+	   else if (pisteLaskuri==2)
+			{
+				ReactionWindow.clear(Color::Black);
+				if(noiseKello.getElapsedTime().asMilliseconds() <= 80)
+				{
+					ReactionWindow.draw(SpriteLib["noise1"]);
+					TextLib["pisteet"].setColor(randomOpacity);
+				}
+				else if(noiseKello.getElapsedTime().asMilliseconds() > 80 && noiseKello.getElapsedTime().asMilliseconds() <= 160)
+				{
+					ReactionWindow.draw(SpriteLib["noise2"]);
+				}
+				else if(noiseKello.getElapsedTime().asMilliseconds() > 160 && noiseKello.getElapsedTime().asMilliseconds() <= 240)
+					ReactionWindow.draw(SpriteLib["noise3"]);
+				else
+					noiseKello.restart();
+			}
+
+
+
+	   if (kello.getElapsedTime().asSeconds() > 2)  // Pist‰‰ laatikon random spottiin.
+		   {
+			   SpriteLib["testi"].setPosition(width(generator)-boxW,height(generator)-boxH);
+			   SpriteLib["ghost"].setPosition(width(generator),height(generator));
+			   kello.restart();
+		   }
+
+
 	   ReactionWindow.draw(SpriteLib["testi"]);
+	   ReactionWindow.draw(SpriteLib["ghost"]);
+	   ReactionWindow.draw(SpriteLib["scoreBG"]);
+	   ReactionWindow.draw(TextLib["pisteet"]);
 	   ReactionWindow.display();
-
-	   //CheckForMouseTrigger(SpriteLib["testi"], ReactionWindow);
-	   /*mousePosition.x=Mouse::getPosition(ReactionWindow).x;
-	   mousePosition.y=Mouse::getPosition(ReactionWindow).y;*/
-
 	}
 }
 
+
+// True kun hiiri on spriten alueella ja painat vasenta.
 bool MouseClickArea(Sprite sprite, Event &event, RenderWindow &window)
 {
 	int mouseX = Mouse::getPosition(window).x;
@@ -70,7 +105,7 @@ bool MouseClickArea(Sprite sprite, Event &event, RenderWindow &window)
 	{
 		if(mouseX > sprite.getPosition().x && mouseY > sprite.getPosition().y && mouseX < (sprite.getPosition().x+32) && mouseY < (sprite.getPosition().y+32))
 		{
-			cout<<"TOIMII";
+			cout<<"\n Pisteet +1";
 			return true;
 		}
 		else return false;
@@ -119,7 +154,7 @@ void CreateSprite(string name, string path)
 {
 	Texture texture;
 	Sprite sprite;
-	cout<<textureIndex<<": "<<path<<" "; // Testausta
+	cout<<textureIndex<<": "<<path<<"\n"; // Testausta
 
 	texture.loadFromFile(path);
 	TextureLib[textureIndex] = texture;
@@ -129,13 +164,42 @@ void CreateSprite(string name, string path)
 }
 
 
+//void CreateText(string name, string texts, Font font, int size) 
+//{
+//	Text tekstia(" ", font, size);
+//	tekstia.setString(texts);
+//	//text.setCharacterSize(size);
+//	//text.setFont(font);
+//	//tekstia.setColor(color);
+//	TextLib.insert(make_pair(name,tekstia));
+//}
+
+
 // Alustaa game assetit.
 void Initialize()
 {
+	cout<<"Creating Sprites \n";
 	CreateSprite("testi","Resources/reactionbox.png");
 	CreateSprite("title","Resources/reactionbox2.png");
+	CreateSprite("scoreBG","Resources/scoreBG.png");
+	CreateSprite("noise1","Resources/noise1.png");
+	CreateSprite("noise2","Resources/noise2.png");
+	CreateSprite("noise3","Resources/noise3.png");
+	CreateSprite("ghost","Resources/ghost.png");
 
-	cout<<"Sprites: " <<SpriteLib.size();
-	cout<<" Textures: " <<TextureLib.size();
-	cout<<" TextureIndex: "<<textureIndex;
+	Text pisteet("1101010110",Impact,44);
+	TextLib.insert(make_pair("pisteet", pisteet));
+
+	cout<<"\nSprites: " <<SpriteLib.size();
+	cout<<"\nTexture Space: " <<TextureLib.size();
+	cout<<"\nTexture Count: "<<textureIndex;
+	cout<<"\nTexts: " <<TextLib.size();
+}
+
+
+string ConvertInt(int number)
+{
+   stringstream ss; // Create a stringstream.
+   ss << number; // Add number to the stream.
+   return ss.str(); // return a string with the contents of the stream.
 }

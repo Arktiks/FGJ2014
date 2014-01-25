@@ -16,6 +16,7 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <sstream>
 using namespace std;
 using namespace sf;
 
@@ -23,6 +24,8 @@ void ReactionGame();
 void Initialize();
 void CreateSprite(string name, string path);
 bool MouseClickArea(Sprite sprite, Event &event, RenderWindow &window);
+string ConvertInt(int number);
 
+//void CreateText(string name, string texts, Font font, int size);
 //bool CheckForMouseTrigger(Sprite &sprite, RenderWindow &window);
 //bool MouseClick(Sprite sprite);
