@@ -1,15 +1,11 @@
+// ### SFML ###
 #include <Windows.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 
-//#include <SFML/System/Time.hpp>
-//#include <SFML/System/Clock.hpp>
-//#include <SFML/Window/Event.hpp> // Defines a system event and its parameters. 
-//#include <SFML/System/Vector2.hpp> // Utility template class for manipulating 2-dimensional vectors. 
-//#include <SFML/Graphics/Rect.hpp> // Utility class for manipulating 2D axis aligned rectangles. 
-//#include <SFML/Window/Mouse.hpp>
-
+// ### C++ ###
 #include <iostream>
 #include <map>
 #include <utility>
@@ -20,12 +16,15 @@
 using namespace std;
 using namespace sf;
 
+
+//Funktioiden selitykset <cpp> tiedostossa.
 void ReactionGame();
 void Initialize();
 void CreateSprite(string name, string path);
+void CreateSound(string name, string path);
 bool MouseClickArea(Sprite sprite, Event &event, RenderWindow &window);
+Sprite InstantSprite(string path);
 string ConvertInt(int number);
 
+//Työn alla olevat funktiot.
 //void CreateText(string name, string texts, Font font, int size);
-//bool CheckForMouseTrigger(Sprite &sprite, RenderWindow &window);
-//bool MouseClick(Sprite sprite);
