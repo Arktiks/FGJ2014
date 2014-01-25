@@ -8,27 +8,21 @@ default_random_engine generator((unsigned int)time(0)); // Random generattoori <
 
 int textureIndex=0; // Käytetään CreateSpritessä
 Clock kello;
-float boxW=32, boxH=32;
-//Time spawnTimer = kello.getElapsedTime(); // Estää boxin spawnausta liian nopeasti
-//float spawnTimer = kello.getElapsedTime();
+float boxW=32, boxH=32; // Reactionbox Mitat
 
 uniform_real_distribution<float> width(boxW, 1024); // Leveys randomisaatio
 uniform_real_distribution<float> height(boxH, 576); // Korkeus randomisaatio
+uniform_real_distribution<float> color(1, 255); // Random väri
 
+Mouse mouse;
 
 void ReactionGame()
 {
 	ReactionWindow.create(VideoMode(1024, 576), "My window");
 	Initialize();
+	//Color randomColor(color(generator),color(generator),color(generator),255);
 
-	Time testiaika;
-
-	// RNGtestaus
-	//for (int i=0;i<3;i++) 
-	//{
-	//	cout<<" leveys: "<<width(generator);
-	//	cout<<" korkeus: "<< height(generator);
-	//}
+	cout<<SpriteLib["testi"].getLocalBounds().height;
 
 
 	while (ReactionWindow.isOpen()) 
@@ -38,16 +32,25 @@ void ReactionGame()
 			   if (ReactionEvent.type == Event::Closed) 
 				   ReactionWindow.close();
 			}
-	   ReactionWindow.clear(Color::Blue);
 
-	   if (kello.getElapsedTime().asSeconds() > 0.5)
+	   //ReactionWindow.clear(Color(color(generator),color(generator),color(generator),255)); // Epilepsia väri
+	   ReactionWindow.clear(Color::Black); // Musta
+
+	   /*if (kello.getElapsedTime().asSeconds() > 0.5)
 	   {
 		   SpriteLib["testi"].setPosition(width(generator)-boxW,height(generator)-boxH);
+		   SpriteLib["testi"].setColor(Color(color(generator),color(generator),color(generator),255));
 		   kello.restart();
-	   }
+	   }*/
 
-	   //cout<<kello.getElapsedTime().asSeconds();
-	   //system("PAUSE");
+	   /*if (MouseClick(SpriteLib["testi"]))
+		   cout<<"Osui";*/
+
+	   /*if (Mouse::isButtonPressed(Mouse::Button::Left))
+		   cout<<"VASEN! ";*/
+
+	   if(SpriteLib["testi"].contains(Mouse::getPosition(ReactionWindow)))
+		   cout<<"SISÄLLÄ! ";
 
 	   ReactionWindow.draw(SpriteLib["testi"]);
 	   ReactionWindow.display(); 
@@ -56,12 +59,20 @@ void ReactionGame()
 }
 
 
-//vector<float> RandomVector()
+//bool MouseClick(Sprite sprite)
 //{
-//	vector<float> location(float a, float b);
-//	float a = width(generator);
-//	float b = height(generator);
-//	return location;
+//	//if (sprite.getLocalBounds().contains((float)(Mouse.getPosition(ReactionWindow).x), (float)(Mouse.getPosition(ReactionWindow).y)) && Mouse::isButtonPressed(Mouse.Left))
+//	Rect<float> spriteNelio;
+//	spriteNelio.height = sprite.getLocalBounds().height;
+//	spriteNelio.width = sprite.getLocalBounds().width;
+//	spriteNelio.left = sprite.getLocalBounds().left;
+//	spriteNelio.top = sprite.getLocalBounds().top;
+//
+//	//if(sprite.getLocalBounds().contains(Mouse::getPosition(ReactionWindow)))
+//	if(spriteNelio.contains(Mouse.getPosition))
+//		return true;
+//	else
+//		return false;
 //}
 
 
