@@ -14,15 +14,12 @@ uniform_real_distribution<float> width(boxW, 1024); // Leveys randomisaatio
 uniform_real_distribution<float> height(boxH, 576); // Korkeus randomisaatio
 uniform_real_distribution<float> color(1, 255); // Random väri
 
-Mouse mouse;
 
 void ReactionGame()
 {
 	ReactionWindow.create(VideoMode(1024, 576), "My window");
 	Initialize();
-	//Color randomColor(color(generator),color(generator),color(generator),255);
-
-	cout<<SpriteLib["testi"].getLocalBounds().height;
+	Vector2f mousePosition = Vector2f(Mouse.getPosition(ReactionWindow).x,Mouse.getPosition(ReactionWindow).y);
 
 
 	while (ReactionWindow.isOpen()) 
@@ -31,29 +28,20 @@ void ReactionGame()
 			{
 			   if (ReactionEvent.type == Event::Closed) 
 				   ReactionWindow.close();
+			   else if(ReactionEvent.type == Event::MouseButtonPressed && ReactionEvent.mouseButton.button == Mouse::Left)
+			   {
+				   cout<<"TOIMITT";
+				   if(SpriteLib["testi"].getGlobalBounds().contains(mousePosition))
+					   cout<<"VEKTORIIIII";
+			   }
 			}
 
 	   //ReactionWindow.clear(Color(color(generator),color(generator),color(generator),255)); // Epilepsia väri
 	   ReactionWindow.clear(Color::Black); // Musta
-
-	   /*if (kello.getElapsedTime().asSeconds() > 0.5)
-	   {
-		   SpriteLib["testi"].setPosition(width(generator)-boxW,height(generator)-boxH);
-		   SpriteLib["testi"].setColor(Color(color(generator),color(generator),color(generator),255));
-		   kello.restart();
-	   }*/
-
-	   /*if (MouseClick(SpriteLib["testi"]))
-		   cout<<"Osui";*/
-
-	   /*if (Mouse::isButtonPressed(Mouse::Button::Left))
-		   cout<<"VASEN! ";*/
-
-	   if(SpriteLib["testi"].contains(Mouse::getPosition(ReactionWindow)))
-		   cout<<"SISÄLLÄ! ";
-
 	   ReactionWindow.draw(SpriteLib["testi"]);
-	   ReactionWindow.display(); 
+	   ReactionWindow.display();
+
+	   mousePosition = Vector2f(Mouse.getPosition(ReactionWindow).x,Mouse.getPosition(ReactionWindow).y);
 	}
 
 }
