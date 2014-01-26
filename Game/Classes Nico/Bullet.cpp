@@ -1,4 +1,4 @@
-#include "bullet.h"
+#include "Bullet.h"
 
 
 bullet::bullet(sf::Vector2f player_pos)

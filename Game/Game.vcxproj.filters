@@ -32,10 +32,16 @@
     <ClCompile Include="Classes Nico\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes Nico\map.cpp">
+    <ClCompile Include="Classes Nico\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Classes Nico\Player.cpp">
+    <ClCompile Include="Classes Nico\Cannonball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes Nico\Enemy_cannon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -55,10 +61,16 @@
     <ClInclude Include="Classes Nico\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes Nico\map.h">
+    <ClInclude Include="Classes Nico\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Classes Nico\Player.h">
+    <ClInclude Include="Classes Nico\Cannonball.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes Nico\Enemy_cannon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

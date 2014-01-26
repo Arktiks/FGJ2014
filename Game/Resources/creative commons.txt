@@ -1,1 +1,11 @@
+audio
 57212__niffshack__glitch-nonsense
+121254__quote__bleep2
+137109__klankbeeld__horror-ambience-16
+141196__eagleclaw__evil-laugh
+
+pictures
+dave jones - Siglent SDG5000 Function Generator Teardown
+haruhiko okumura - Concrete Mathematics, 2nd ed.
+tim simpson1 - circuit_town
+tom brown - Mathematics Explore April 24, 2013 #4 (at one time)

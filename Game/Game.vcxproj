@@ -80,21 +80,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Classes Nico\Bullet.cpp" />
+    <ClCompile Include="Classes Nico\Cannonball.cpp" />
     <ClCompile Include="Classes Nico\Draw.cpp" />
+    <ClCompile Include="Classes Nico\Enemy_cannon.cpp" />
     <ClCompile Include="Classes Nico\Game.cpp" />
     <ClCompile Include="Classes Nico\Input.cpp" />
-    <ClCompile Include="Classes Nico\map.cpp" />
     <ClCompile Include="Classes Nico\Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ReactionGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Classes Nico\Bullet.h" />
+    <ClInclude Include="Classes Nico\Cannonball.h" />
     <ClInclude Include="Classes Nico\Draw.h" />
+    <ClInclude Include="Classes Nico\Enemy_cannon.h" />
     <ClInclude Include="Classes Nico\Game.h" />
     <ClInclude Include="Classes Nico\Input.h" />
-    <ClInclude Include="Classes Nico\map.h" />
     <ClInclude Include="Classes Nico\Player.h" />
     <ClInclude Include="ReactionGame.h" />
   </ItemGroup>
