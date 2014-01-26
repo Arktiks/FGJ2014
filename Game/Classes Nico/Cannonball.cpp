@@ -15,7 +15,7 @@ Cannonball::~Cannonball(void)
 
 void Cannonball::Update()
 {
-	pos.y += 0.2;
+	pos.y += 0.18f;
 	collison_pox.left = pos.x;
 	collison_pox.top = pos.y;
 }

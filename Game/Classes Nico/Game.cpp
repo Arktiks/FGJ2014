@@ -33,6 +33,7 @@ void Game::Close_window()//Close the main window
 void Game::Main_loop()
 {
 	
+	
 	Greate_window();
 
 

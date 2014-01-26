@@ -6,7 +6,7 @@ Draw::Draw()
 {
 	Load_Image("Jamm_text.png");
 	Load_Sprites();
-	b_max = false;
+	b_max = restart_game = false;
 	wave = 0;
 }
 
@@ -140,6 +140,7 @@ void Draw::Update(sf::RenderWindow& _window, sf::Vector2f player_pos, Player& pl
 		_window.draw(Game_Over);
 		if(player.input.Press_Key(sf::Keyboard::Space))
 		{
+			restart_game = true;
 			std::cout << "Press";
 		}
 	}
@@ -223,22 +224,159 @@ void Draw::Draw_Baground(sf::RenderWindow& _window)
 
 void Draw::Draw_Enemy_formations()
 {
-	
-	if(time2 > sf::milliseconds(4*1000) && wave == 0)
-	{
-		Enemy_cannon temp(500,-50);
-		cannons.push_back(temp);
-		
+	Enemy_cannon temp1(0,-150);
+	Enemy_cannon temp2(100,-150);
+	Enemy_cannon temp3(200,-150);
+	Enemy_cannon temp4(300,-150);
+	Enemy_cannon temp5(400,-150);
+	Enemy_cannon temp6(500,-150);
+	Enemy_cannon temp7(600,-150);
+	Enemy_cannon temp8(700,-150);
+	Enemy_cannon temp9(800,-150);
+	Enemy_cannon temp10(900,-150);
 
-		Enemy_cannon temp2(60,0);
+	if(time2 > sf::milliseconds(3*1000) && wave == 0)
+	{
+		
 		cannons.push_back(temp2);
+		cannons.push_back(temp9);
 
 		wave++;
 	}
 
-
-	if(time2 == sf::milliseconds(60*1000))
+	if(time2 > sf::milliseconds(9*1000) && wave == 1)
 	{
-		
+		cannons.push_back(temp3);
+		temp5.pos.y = -300;
+		cannons.push_back(temp5);
+		cannons.push_back(temp7);
+
+		wave++;
 	}
+
+	if(time2 > sf::milliseconds(16*1000) && wave == 2)
+	{
+		cannons.push_back(temp3);
+		cannons.push_back(temp5);
+		temp5.pos.y = -400;
+		cannons.push_back(temp5);
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+
+	if(time2 > sf::milliseconds(29*1000) && wave == 3)
+	{
+		cannons.push_back(temp3);
+		temp3.pos.y = -300;
+		cannons.push_back(temp3);
+
+		temp5.pos.y = -300;
+
+		cannons.push_back(temp7);
+		temp3.pos.y = -300;
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+
+	if(time2 > sf::milliseconds(30*1000) && wave == 4)
+	{
+		cannons.push_back(temp3);
+		temp3.pos.y = -300;
+		cannons.push_back(temp3);
+
+		
+
+		cannons.push_back(temp7);
+		temp3.pos.y = -300;
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+
+	if(time2 > sf::milliseconds(37*1000) && wave == 5)
+	{
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp5);
+		
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+	
+	if(time2 > sf::milliseconds(44*1000) && wave == 6)
+	{
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp5);
+		
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+	
+	if(time2 > sf::milliseconds(51*1000) && wave == 7)
+	{
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp5);
+		
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+	
+	if(time2 > sf::milliseconds(59*1000) && wave == 8)
+	{
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp3);
+
+		cannons.push_back(temp5);
+		
+		cannons.push_back(temp7);
+
+		wave++;
+	}
+	
+	if(time2 > sf::milliseconds(65*1000) && wave == 9)
+	{
+		cannons.push_back(temp1);
+		cannons.push_back(temp2);
+		cannons.push_back(temp3);
+		cannons.push_back(temp4);
+		cannons.push_back(temp5);
+		cannons.push_back(temp6);
+		cannons.push_back(temp7);
+		cannons.push_back(temp8);
+		cannons.push_back(temp9);
+		cannons.push_back(temp10);
+
+		wave++;
+	}
+	
+	if(time2 > sf::milliseconds(67*1000) && wave == 10)
+	{
+		cannons.push_back(temp1);
+		cannons.push_back(temp2);
+		cannons.push_back(temp3);
+		cannons.push_back(temp4);
+		cannons.push_back(temp5);
+		cannons.push_back(temp6);
+		cannons.push_back(temp7);
+		cannons.push_back(temp8);
+		cannons.push_back(temp9);
+		cannons.push_back(temp10);
+
+		wave++;
+	}
+
 }

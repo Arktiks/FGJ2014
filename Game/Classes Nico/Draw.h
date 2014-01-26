@@ -41,6 +41,8 @@ private:
 
 	sf::RectangleShape baground_shape;
 	sf::Vector2f b_loc, b_size;
+	bool restart_game;
+
 	int wave;
 	bool b_max, b_pause;	
 	void Draw_Baground(sf::RenderWindow& _window);

@@ -4,10 +4,10 @@
 
 Enemy_cannon::Enemy_cannon(float pos_x, float pos_y)
 {
-	pos.x = 0, pos.y = -200;
+	pos.x = pos_x, pos.y = pos_y;
 
-	collison_pox.left = pos.x+20, collison_pox.top = pos.y;
-	collison_pox.height = 100, collison_pox.width = 136; 
+	collison_pox.left = pos.x+60, collison_pox.top = pos.y;
+	collison_pox.height = 100, collison_pox.width = 136-30; 
 
 	hit = false;
 }
@@ -22,7 +22,7 @@ void Enemy_cannon::Update()
 	
 	time = clock.getElapsedTime();
 
-	if(time > sf::Time(sf::seconds(2)))
+	if(time > sf::Time(sf::seconds(1)))
 	{
 		shoot = true;
 		cannonballs.push_back(Cannonball(sf::Vector2f(pos.x + 68, pos.y + 100)));
@@ -39,7 +39,7 @@ void Enemy_cannon::Update()
 			cannonballs.erase(cannonballs.begin() + i);
 		}
 	}
-	pos.y += 0.01;
+	pos.y += 0.02;
 	collison_pox.left = pos.x;
 	collison_pox.top = pos.y;
 }
